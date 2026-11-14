@@ -34,6 +34,7 @@ const Collection = () => {
   };
 
 const applyFilter = () => {
+
     let productsCopy = products.slice();
 
     if (showSearch && search) {
@@ -41,18 +42,16 @@ const applyFilter = () => {
     }
 
     if (category.length > 0) {
-      productsCopy = productsCopy.filter(item => 
-        category.map(c => c.toLowerCase()).includes(item.category.toLowerCase())
-      );
+      productsCopy = productsCopy.filter(item => category.includes(item.category));
     }
 
     if (subCategory.length > 0) {
-      productsCopy = productsCopy.filter(item => 
-        item.subCategory && subCategory.map(s => s.toLowerCase()).includes(item.subCategory.toLowerCase())
-      );
+      // FIX: Changed item.subCategory to item.subcategory
+      productsCopy = productsCopy.filter(item => subCategory.includes(item.subcategory));
     }
 
     setFilterProducts(productsCopy)
+
   }
 
   const sortProduct = () => {
