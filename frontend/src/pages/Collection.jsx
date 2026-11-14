@@ -33,8 +33,7 @@ const Collection = () => {
     }
   };
 
-  const applyFilter = () => {
-
+const applyFilter = () => {
     let productsCopy = products.slice();
 
     if (showSearch && search) {
@@ -42,15 +41,18 @@ const Collection = () => {
     }
 
     if (category.length > 0) {
-      productsCopy = productsCopy.filter(item => category.includes(item.category));
+      productsCopy = productsCopy.filter(item => 
+        category.map(c => c.toLowerCase()).includes(item.category.toLowerCase())
+      );
     }
 
     if (subCategory.length > 0) {
-      productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
+      productsCopy = productsCopy.filter(item => 
+        item.subCategory && subCategory.map(s => s.toLowerCase()).includes(item.subCategory.toLowerCase())
+      );
     }
 
     setFilterProducts(productsCopy)
-
   }
 
   const sortProduct = () => {
